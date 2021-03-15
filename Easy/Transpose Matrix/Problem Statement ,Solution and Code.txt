@@ -1,0 +1,46 @@
+/*Problem Statement:
+
+Given a 2D integer array matrix, return the transpose of matrix.
+
+The transpose of a matrix is the matrix flipped over its main diagonal, 
+switching the matrix's row and column indices.
+
+*/
+
+/*Solution:
+
+If given matrix is m*n
+We create a new matrix of size n*m
+
+and we assign the values stored in original matrix to 
+transposed position in our answer matrix
+
+For transposed position we change the row<-> column and column<->row
+
+
+*/
+
+//C++ Code:
+
+class Solution {
+public:
+    vector<vector<int>> transpose(vector<vector<int>>& matrix) {
+        vector<vector<int>> transpose;
+        int m=matrix.size();
+        int n=matrix[0].size();
+        
+        transpose.resize(n);
+        
+        for(int i=0;i<n;i++)
+            transpose[i].resize(m);
+        
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                transpose[j][i]=matrix[i][j];
+                
+            }
+        }
+        
+        return transpose;
+    }
+};

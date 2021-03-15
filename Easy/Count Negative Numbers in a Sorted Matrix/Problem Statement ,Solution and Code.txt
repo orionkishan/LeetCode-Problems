@@ -1,0 +1,52 @@
+/*Problem Statement:
+
+Given a m x n matrix grid which is sorted in non-increasing order both row-wise and column-wise, 
+return the number of negative numbers in grid.
+
+
+
+*/
+
+/*Solution:
+
+We start with the top right most element and check if it is negative or not.
+
+if it is negative then all the elements below it i.e. all elements of last column 
+are negative(because array is sorted row and column wise) and we reduce the column iterator
+
+if it is positive we increase the row iterator
+
+maximum the loop will run for m+n times so complexity is less(O(n))
+
+
+
+*/
+
+//C++ Code:
+
+class Solution {
+public:
+    int countNegatives(vector<vector<int>>& grid) {
+        int m=grid.size();
+        int n=grid[0].size();
+        int num=0;
+        
+        int i=0;
+        int j=n-1;
+        
+        while(i<m && j>=0){
+            if(grid[i][j]<0){
+                num+=m-i;
+                j--;
+            }
+            else if(grid[i][j]>=0)
+            {
+                i++;
+            }
+            
+        }
+        
+        return num;
+        
+    }
+};

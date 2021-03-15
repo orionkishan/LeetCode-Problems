@@ -1,0 +1,81 @@
+/*Problem Statement:
+
+In MATLAB, there is a very useful function called 'reshape', 
+which can reshape a matrix into a new one with different size but keep its original data.
+
+You're given a matrix represented by a two-dimensional array, 
+and two positive integers r and c representing the row number and column number of the wanted reshaped matrix, respectively.
+
+The reshaped matrix need to be filled with all the elements of the original matrix in the same row-traversing order as they were.
+
+If the 'reshape' operation with given parameters is possible and legal, output the new reshaped matrix; 
+Otherwise, output the original matrix.
+
+*/
+
+/*Solution:
+
+So firstly given matrix is m*n so there are m*n elements stored in it
+So our new reshaped matrix should also have capacity to hold m*n elements
+
+so r*c should be equal to m*n
+
+So if above condition hold we create a new matrix of size r*c
+
+Now for any 2 D matrix it's indexes go like 0,1,2,...m*n-1
+
+so if we want to know for a given index the element at that index will lie
+in which row and column we can the following calculations
+
+say i is the index and m is the number of rows and n is the number of columns
+then for index i
+--> its row will be i/n
+    and its column will be i%n
+
+say 3X3 matrix, indexes will be like
+
+	0 1 2
+	3 4 5
+	6 7 8
+
+so for any index say 5 
+row will be 5/3 which is 1 and column will be 5%3 which is 2
+so index 5 is row 1 and column 2
+
+
+
+*/
+
+//C++ Code:
+
+class Solution {
+public:
+    vector<vector<int>> matrixReshape(vector<vector<int>>& nums, int r, int c) {
+        vector<vector<int>> reshaped;
+        int m=nums.size();
+        int n=nums[0].size();
+        
+        if(m*n!=r*c){
+            reshaped=nums;
+            return reshaped;
+        }
+        
+        else{
+            
+            reshaped.resize(r);
+            for(int i=0;i<r;i++)
+                reshaped[i].resize(c);
+            
+            for(int i=0;i<m*n;i++){
+                int r1=i/n;
+                int c1=i%n;
+                int r2=i/c;
+                int c2=i%c;
+                reshaped[r2][c2]=nums[r1][c1];
+            }
+        }
+        
+        return reshaped;
+        
+    }
+};

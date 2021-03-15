@@ -1,0 +1,62 @@
+/*Problem Statement:
+
+Given an array arr of integers (not necessarily distinct), 
+we split the array into some number of "chunks" (partitions), 
+and individually sort each chunk.  After concatenating them, the result equals the sorted array.
+
+What is the most number of chunks we could have made?
+
+Input: arr = [5,4,3,2,1]
+Output: 1
+Explanation:
+Splitting into two or more chunks will not return the required result.
+For example, splitting into [5, 4], [3, 2, 1] will result in [4, 5, 1, 2, 3], which isn't sorted.
+
+NOTE:-
+arr will have length in range [1, 2000].
+arr[i] will be an integer in range [0, 10**8].
+
+
+*/
+
+/*Solution:
+
+
+So idea here is we will have a sorted copy of given array
+
+so we can have a chunk from ith element to jth element only If
+sum of all elements from i to j in both sorted and unsorted array is same
+
+It is easy to visualize
+
+*/
+
+//C++ Code:
+
+class Solution {
+public:
+    int maxChunksToSorted(vector<int>& arr) {
+        
+        vector<int> sorted(arr);
+        
+        sort(sorted.begin(),sorted.end());
+        
+        double  sum1=0;
+        double  sum2=0;
+        int count=0;
+        
+        for(int i=0;i<arr.size();i++)
+        {
+            
+            sum1+=arr[i];
+            sum2+=sorted[i];
+            
+            if(sum1==sum2)
+                count++;
+            
+        }
+        
+        return count;
+        
+    }
+};

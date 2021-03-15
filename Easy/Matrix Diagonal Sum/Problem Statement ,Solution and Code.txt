@@ -1,0 +1,46 @@
+/*Problem Statement:
+
+Given a square matrix mat, return the sum of the matrix diagonals.
+
+Only include the sum of all the elements on the primary diagonal 
+and all the elements on the secondary diagonal that are not part of the primary diagonal.
+
+
+
+*/
+
+/*Solution:
+
+if n*n matrix is given 
+
+-->if n is even then there is no common element
+   in between primary and secondary diagonals
+
+-->if n is odd then there is one common element(middle element)
+   in between primary and secondary diagonals 
+   so we subtract once the middle element from the sum
+
+
+*/
+
+//C++ Code:
+
+class Solution {
+public:
+    int diagonalSum(vector<vector<int>>& mat) {
+        int n=mat.size();
+        int sum=0;
+        if(n==1)
+            return mat[0][0];
+        
+        for(int i=0;i<n;i++)
+        {
+            sum+=mat[i][i]+mat[i][n-i-1];
+        }
+        
+        if(n%2!=0)
+            sum-=mat[n/2][n/2];
+        
+        return sum;
+    }
+};

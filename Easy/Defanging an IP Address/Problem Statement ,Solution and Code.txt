@@ -1,0 +1,38 @@
+/*Problem Statement:
+
+Given a valid (IPv4) IP address, return a defanged version of that IP address.
+
+A defanged IP address replaces every period "." with "[.]".
+
+Input: address = "1.1.1.1"
+Output: "1[.]1[.]1[.]1"
+
+*/
+
+/*Solution:
+
+We need to replace "." with "[.]'
+So we make a string variable named out
+We keep a for loop to iterate through address elements
+and if address element is we add [.] to out else we add address element
+
+
+
+
+*/
+
+//C++ Code:
+
+class Solution {
+public:
+    string defangIPaddr(string address) {
+        string out;
+        for(int i=0;i<address.size();i++){
+            if(address[i]=='.')
+                out+="[.]";
+            else
+                out+=address[i];
+        }
+        return out;
+    }
+};
